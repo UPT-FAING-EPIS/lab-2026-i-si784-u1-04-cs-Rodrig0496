@@ -32,7 +32,7 @@ jobs:
         env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}', SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}' }
         run: dotnet sonarscanner begin /k:"TU_PROJECT_KEY" /o:"TU_ORGANIZACION" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" || true
       - name: Dotnet Build para SonarCloud
-        run: dotnet build src/Shorten.csproj
+        run: dotnet build Shorten/Shorten.csproj
       - name: SonarCloud End
         env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}', SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}' }
         run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}" || true
