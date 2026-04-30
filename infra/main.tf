@@ -26,8 +26,8 @@ variable "sqladmin_password" {
 provider "azurerm" {
   features {}
   subscription_id = var.suscription_id
-  # ESTA ES LA LÍNEA MÁGICA QUE EVITA QUE SE CUELGUE:
-  skip_provider_registration = true
+  # FIX WARNING: Usamos la nueva sintaxis para evitar que se cuelgue sin alertas
+  resource_provider_registrations = "none"
 }
 
 resource "random_integer" "ri" {
@@ -37,7 +37,8 @@ resource "random_integer" "ri" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "upt-arg-${random_integer.ri.result}"
-  location = "eastus"
+  # FIX ERROR: Cambiamos de eastus a centralus para evitar el bloqueo de Azure
+  location = "centralus"
 }
 
 resource "azurerm_service_plan" "appserviceplan" {
