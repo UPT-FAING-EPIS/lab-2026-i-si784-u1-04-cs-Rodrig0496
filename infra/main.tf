@@ -26,6 +26,8 @@ variable "sqladmin_password" {
 provider "azurerm" {
   features {}
   subscription_id = var.suscription_id
+  # ESTA ES LA LÍNEA MÁGICA QUE EVITA QUE SE CUELGUE:
+  skip_provider_registration = true
 }
 
 resource "random_integer" "ri" {
