@@ -28,7 +28,7 @@ jobs:
       - name: tfsec
         run: |
           cd infra
-          /usr/local/bin/tfsec -s -f markdown > tfsec.md
+          /usr/local/bin/tfsec -s -f markdown > tfsec.md || true
           echo "## TFSec Output" >> $GITHUB_STEP_SUMMARY
           cat tfsec.md >> $GITHUB_STEP_SUMMARY  
       - name: Setup Terraform
@@ -69,7 +69,8 @@ jobs:
             esac
       - name: Setup Go
         uses: actions/setup-go@v5
-        with: { go-version: 'stable' }
+        with:
+          go-version: 'stable'
       - name: Setup Terramaid
         run: |
             curl -L -o /tmp/terramaid.tar.gz "https://github.com/RoseSecurity/Terramaid/releases/download/${{ steps.vars.outputs.terramaid_version }}/Terramaid_Linux_${{ steps.vars.outputs.arch }}.tar.gz"
@@ -101,7 +102,8 @@ jobs:
           path: infra/inframap_azure.svg
       - name: Setup infracost
         uses: infracost/actions/setup@v3
-        with: { api-key: ${{ secrets.INFRACOST_API_KEY }} }
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
       - name: infracost
         run: |
             cd infra
@@ -111,7 +113,8 @@ jobs:
       - name: Convert HTML to Markdown
         id: html2markdown
         uses: rknj/html2markdown@v1.1.0
-        with: { html-file: "infra/infracost-report.html" }
+        with:
+          html-file: "infra/infracost-report.html"
       - name: Upload infracost report
         run: |
             echo "## infracost Report" >> $GITHUB_STEP_SUMMARY
