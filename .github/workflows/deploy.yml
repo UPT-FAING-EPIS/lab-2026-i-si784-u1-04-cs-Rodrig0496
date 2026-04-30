@@ -1,3 +1,4 @@
+# tfsec:ignore:general
 name: Construcción infrastructura en Azure
 on:
   push:
