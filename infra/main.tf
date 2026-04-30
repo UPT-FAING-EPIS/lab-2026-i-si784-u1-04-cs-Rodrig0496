@@ -1,19 +1,37 @@
 terraform {
   required_providers {
-    azurerm = { source  = "hashicorp/azurerm", version = "~> 4.0.0" }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.0.0"
+    }
   }
   required_version = ">= 0.14.9"
 }
-variable "suscription_id" { type = string, description = "Azure subscription id" }
-variable "sqladmin_username" { type = string, description = "Administrator username for server" }
-variable "sqladmin_password" { type = string, description = "Administrator password for server" }
+
+variable "suscription_id" {
+    type = string
+    description = "Azure subscription id"
+}
+
+variable "sqladmin_username" {
+    type = string
+    description = "Administrator username for server"
+}
+
+variable "sqladmin_password" {
+    type = string
+    description = "Administrator password for server"
+}
 
 provider "azurerm" {
   features {}
   subscription_id = var.suscription_id
 }
 
-resource "random_integer" "ri" { min = 100, max = 999 }
+resource "random_integer" "ri" {
+  min = 100
+  max = 999
+}
 
 resource "azurerm_resource_group" "rg" {
   name     = "upt-arg-${random_integer.ri.result}"
@@ -62,7 +80,7 @@ resource "azurerm_mssql_server" "sqlsrv" {
 resource "azurerm_mssql_firewall_rule" "sqlaccessrule" {
   name             = "PublicAccess"
   server_id        = azurerm_mssql_server.sqlsrv.id
-  # FIX TFSEC: Bloquear acceso público global (255.255.255.255) y permitir solo servicios de Azure internamente (0.0.0.0)
+  # FIX TFSEC: Bloquear acceso público global
   start_ip_address = "0.0.0.0"
   end_ip_address   = "0.0.0.0"
 }
