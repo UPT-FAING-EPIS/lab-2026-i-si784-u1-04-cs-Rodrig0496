@@ -5733,11 +5733,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspaces/lab-2026-i-si784-u1-04-cs-Rodrig0496/src/Shorten.csproj",
+      "projectUniqueName": "/workspaces/lab-2026-i-si784-u1-04-cs-Rodrig0496/Shorten/Shorten.csproj",
       "projectName": "Shorten",
-      "projectPath": "/workspaces/lab-2026-i-si784-u1-04-cs-Rodrig0496/src/Shorten.csproj",
+      "projectPath": "/workspaces/lab-2026-i-si784-u1-04-cs-Rodrig0496/Shorten/Shorten.csproj",
       "packagesPath": "/home/codespace/.nuget/packages/",
-      "outputPath": "/workspaces/lab-2026-i-si784-u1-04-cs-Rodrig0496/src/obj/",
+      "outputPath": "/workspaces/lab-2026-i-si784-u1-04-cs-Rodrig0496/Shorten/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/codespace/.nuget/NuGet/NuGet.Config"
